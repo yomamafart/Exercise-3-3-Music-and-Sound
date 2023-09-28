@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://cfb204qt38vvo"]
+
+[ext_resource type="Script" path="res://Paddle/Paddle.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://b2j6r2b5562nt" path="res://Assets/paddleRed.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dndqhqck7qwjj" path="res://Assets/paddleBlu.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bcgb2e5bw81lg" path="res://Assets/confetti.png" id="4"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(100, 20)
+
+[sub_resource type="Curve" id="2"]
+_data = [Vector2(0.00115808, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.238739), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="3"]
+offsets = PackedFloat32Array(0, 0.237215, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.763401, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_j73l4"]
+min_value = -1.0
+_data = [Vector2(0.0123532, -1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Paddle" type="CharacterBody2D"]
+script = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
+
+[node name="Confetti" type="CPUParticles2D" parent="."]
+position = Vector2(2.08165e-12, -10)
+emitting = false
+amount = 6
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.7
+randomness = 1.0
+texture = ExtResource("4")
+direction = Vector2(0, -1)
+spread = 25.0
+initial_velocity_min = 200.0
+initial_velocity_max = 800.0
+angular_velocity_min = 200.0
+angular_velocity_max = 800.0
+scale_amount_min = 0.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("2")
+color_ramp = SubResource("3")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_j73l4")
+
+[node name="Images" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Images"]
+texture = ExtResource("2")
+
+[node name="Highlight" type="Sprite2D" parent="Images"]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("3")
