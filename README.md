@@ -108,7 +108,7 @@ func _ready():
 	sway_randomizer = Vector2(randf()*6-3.0, randf()*6-3.0)
 ```
 
-Then, replace the `pass` statement on line 49 with the following:
+Then, replace the `pass` statement in `_physics_process` with the following:
 ```
 		color_distance = Global.color_position.distance_to(global_position)  / 100
 		if Global.color_rotate >= 0:

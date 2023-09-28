@@ -46,7 +46,7 @@ func _ready():
 func _physics_process(_delta):
 	if dying and not $Confetti.emitting and not tween:
 		queue_free()
-	elif not tween and not get_tree().paused:
+	elif not get_tree().paused:
 		pass
 
 func hit(_ball):

@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=9 format=3 uid="uid://crrif6721qgok"]
 
-[ext_resource type="FontFile" uid="uid://cx4bbw76rjdw0" path="res://Assets/LeagueGothic-Regular.ttf" id="1"]
+[ext_resource type="FontFile" uid="uid://4cc2b15ix0is" path="res://Assets/LeagueGothic-Regular.ttf" id="1"]
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("1")])
