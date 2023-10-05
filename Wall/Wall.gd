@@ -12,4 +12,8 @@ func _physics_process(_delta):
 		$ColorRect.color.v += decay
 
 func hit(_ball):
-	$ColorRect.color = Color8(201,42,42)
+	$ColorRect.color = Color8(201,42,42,255)
+	var wall_sound = get_node_or_null("/root/Game/Wall")
+	if wall_sound != null:
+		wall_sound.play()
+

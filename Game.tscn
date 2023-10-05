@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://sp64y2eqbd63"]
+[gd_scene load_steps=18 format=3 uid="uid://sp64y2eqbd63"]
 
 [ext_resource type="Script" path="res://Brick/Brick_Container.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://cfb204qt38vvo" path="res://Paddle/Paddle.tscn" id="2"]
+[ext_resource type="Script" path="res://Ball/Comet_container.gd" id="2_pagml"]
 [ext_resource type="Script" path="res://Ball/Ball_Container.gd" id="3"]
 [ext_resource type="Script" path="res://Game.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://bna1k8dkka5xx" path="res://UI/Pause_Menu.tscn" id="5"]
@@ -9,6 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://cb6abwxodebx1" path="res://UI/HUD.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://d03l3yccdo8fa" path="res://UI/Instructions.tscn" id="8"]
 [ext_resource type="Script" path="res://Effects/Camera.gd" id="9"]
+[ext_resource type="AudioStream" uid="uid://d3oxinaavh5dp" path="res://Assets/Ibomb.wav" id="10_27ka6"]
+[ext_resource type="AudioStream" uid="uid://cdmd83gyer5mo" path="res://Assets/paddle game music'.mp3" id="11_jwlvb"]
+[ext_resource type="AudioStream" uid="uid://c52ed85b6m4bj" path="res://Assets/impact.wav" id="12_0rp44"]
+[ext_resource type="AudioStream" uid="uid://bsyqrtec12f7l" path="res://Assets/space boots.wav" id="13_hpwr7"]
+[ext_resource type="AudioStream" uid="uid://cltojqdb1a3dk" path="res://Assets/falling down.wav" id="14_f4mqm"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(200, 1000)
@@ -18,6 +24,9 @@ size = Vector2(1224, 200)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("4")
+
+[node name="Comet_container" type="Node2D" parent="."]
+script = ExtResource("2_pagml")
 
 [node name="Wall_Container" type="Node2D" parent="."]
 
@@ -74,3 +83,19 @@ visible = false
 [node name="Camera" type="Camera2D" parent="."]
 anchor_mode = 0
 script = ExtResource("9")
+
+[node name="Wall" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_27ka6")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_jwlvb")
+autoplay = true
+
+[node name="Paddle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_0rp44")
+
+[node name="Brick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_hpwr7")
+
+[node name="Die" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_f4mqm")

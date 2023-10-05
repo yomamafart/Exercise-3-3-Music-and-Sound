@@ -19,6 +19,16 @@ var color_distance = 0
 var color_completed = true
 
 var tween
+var colors = [
+	Color8(224,49,49,255)
+	,Color8(255,146,43,255)
+	,Color8(255,212,59,255)
+	,Color8(148,216,45,255)
+	,Color8(34,139,230,255)
+	,Color8(132,94,247,255)
+	,Color8(190,75,219,255)
+	,Color8(134,142,150,255)
+]
 
 func _ready():
 	randomize()
@@ -42,17 +52,32 @@ func _ready():
 		$ColorRect.color = Color8(190,75,219)
 	else:
 		$ColorRect.color = Color8(134,142,150)
+	$ColorRect.color = colors[color_index]
+	sway_initial_position = $ColorRect.position
+	sway_randomizer = Vector2(randf()*6-3.0, randf()*6-3.0)
 
 func _physics_process(_delta):
 	if dying and not $Confetti.emitting and not tween:
 		queue_free()
 	elif not get_tree().paused:
-		pass
-
+		color_distance = Global.color_position.distance_to(global_position)  /100
+		if Global.color_rotate >= 0:
+			$ColorRect.color = colors[(int(float(color_distance + Global.color_rotate))%len(colors))]
+			color_completed = false
+		elif not color_completed:
+			$ColorRect.color = colors[color_index]
+			color_completed = true
+	var pos_x = (sin(Global.sway_index)*(sway_amplitude + sway_randomizer.x))
+	var pos_y = (cos(Global.sway_index)*(sway_amplitude + sway_randomizer.y))
+	$ColorRect.position = Vector2(sway_initial_position.x + pos_x, sway_initial_position.y + pos_y)
 func hit(_ball):
+	Global.color_rotate = Global.color_rotate_amount
+	Global.color_position = _ball.global_position
 	die()
 
 func die():
+	var Brick = get_node("/root/Game/Brick")
+	Brick.play()
 	dying = true
 	collision_layer = 0
 	collision_mask = 0
